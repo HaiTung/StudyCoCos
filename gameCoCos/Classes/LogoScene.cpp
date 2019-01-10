@@ -31,10 +31,11 @@ bool LogoScene::init()
 	//actionRotate
 	auto actionRotateTo = RotateTo::create(1, 90);
 
-	
+	//actionSequence
+	auto actionSequence = Sequence::create(actionMoveTo, actionRotateTo, nullptr);
 
 
-	logo->runAction(actionRotateTo);
+	logo->runAction(actionSequence);
 	return true;
 
 }
