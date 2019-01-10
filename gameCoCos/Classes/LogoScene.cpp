@@ -28,10 +28,13 @@ bool LogoScene::init()
 	auto actionMoveTo = MoveTo::create(0.5, Vec2(200, 100));
 	auto actionMoveBy = MoveBy::create(3, Vec2(200, 100));
 
+	//actionRotate
+	auto actionRotateTo = RotateTo::create(1, 90);
+
 	
 
 
-	logo->runAction(actionMoveTo);
+	logo->runAction(actionRotateTo);
 	return true;
 
 }
