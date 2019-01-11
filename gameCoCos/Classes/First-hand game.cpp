@@ -1,4 +1,5 @@
 #include "First-hand game.h"
+#include "PlayScene.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
@@ -23,12 +24,19 @@ bool First_hand_game::init()
 	auto LogoGl = Sprite::create("LogoGL.png");
 	LogoGl->setPosition(screenSize.width / 2, screenSize.height / 2);
 	LogoGl->setScale(0.2);
-	
-	auto setScale = ScaleTo::create(4,(2,0));
-
-	LogoGl->runAction(setScale);
 	addChild(LogoGl);
 
+	auto setScale = ScaleTo::create(1.0f, 0.1f);
 	
+
+	auto gotoNext = CallFunc::create([]()
+	{
+		Director::getInstance()->replaceScene(PlayScene::createScene());
+	});
+
+	auto sequence = Sequence::createWithTwoActions(setScale, gotoNext);
+	
+
+	LogoGl->runAction(sequence);
 	return true;
 }
