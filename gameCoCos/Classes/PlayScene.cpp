@@ -29,6 +29,19 @@ bool PlayScene::init()
 	myLabel->setColor(Color3B(255, 0, 0));
 	addChild(myLabel);
 
-	
+	//Tao MenuIteam
+	auto itemPlay = MenuItemFont::create("Play", nullptr);
+	auto itemSetting = MenuItemFont::create("Setting", nullptr);
+	auto itemMoreGame = MenuItemFont::create("More Game", nullptr);
+	auto itemAbout = MenuItemFont::create("About", nullptr);
+
+	itemPlay->setPosition(screenSize.width / 2, screenSize.height / 2);
+	itemSetting->setPosition(screenSize.width / 2, screenSize.height / 2);
+	itemMoreGame->setPosition(screenSize.width / 2, screenSize.height / 2);
+	itemAbout->setPosition(screenSize.width / 2, screenSize.height / 2);
+
+	auto menuLabel = Menu::create(itemPlay, itemSetting, itemMoreGame, itemAbout, nullptr);
+	menuLabel->setPosition(0, 0);
+	addChild(menuLabel);
 	return true;
 }
