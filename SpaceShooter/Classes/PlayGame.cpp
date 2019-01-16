@@ -1,8 +1,10 @@
-
+#include "SimpleAudioEngine.h"
 #include "PlayGame.h"
 
 USING_NS_CC;
 using namespace cocos2d;
+Sprite *spaceship;
+Sprite * bullet;
 
 Scene * PlayGame::createScene()
 {
@@ -23,12 +25,34 @@ bool PlayGame::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 orin = Director::getInstance()->getVisibleOrigin();
 	auto Background = Sprite::create("background.png");
-	
+
 	// position the sprite on the center of the screen
 	Background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
 	Background->setScale(1.9f);
 	// add the sprite as a child to this layer
 	addChild(Background);
+	// spacechip
+	spaceship = Sprite::create("spaceship.png");
+	spaceship->setScale(0.5);
+	spaceship->setPosition(Vec2(200, 100));
+	addChild(spaceship);
+	//bullet
+	bullet = Sprite::create("bullet.png");
+	bullet->setScale(0.5);
+
+	bullet->setPosition(spaceship->getPosition());
+	addChild(bullet);
+
+	auto moveBy = MoveBy::create(0.9, Vec2(0, spaceship->getPosition().x + 200));
+	auto callback = CallFunc::create([=]() {
+		bullet->setPosition(spaceship->getPosition());
+	});
+	auto sq = Sequence::create(moveBy, callback, nullptr);
+	auto repeat = RepeatForever::create(sq);
+	
+	//auto actionRotate = RepeatForever::create(bullets);
+
+	bullet->runAction(repeat->clone());
 
 	// onTouch
 	auto listener = EventListenerTouchOneByOne::create();
@@ -44,11 +68,21 @@ bool PlayGame::onTouchBegan(Touch* touch, Event  *event)
 {
 
 	Vec2 touchlocation = touch->getLocation();
-	auto spaceship = Sprite::create("spaceship.png");
-	spaceship->setScale(3);
 	spaceship->setPosition(touchlocation);
-	addChild(spaceship);
+	bullet->setPosition(touchlocation);
+	/*auto spaceship = Sprite::create("spaceship.png");
+	spaceship->setScale(0.5);
+	spaceship->setPosition(touchlocation);
+	addChild(spaceship);*/
 
 
 	return true;
 }
+
+void PlayGame::onTouchMoved(Touch* touch, Event  *event)
+{
+	Vec2 touchlocation = touch->getLocation();
+	spaceship->setPosition(touchlocation);
+//	bullet->setPosition(touchlocation);
+}
+  

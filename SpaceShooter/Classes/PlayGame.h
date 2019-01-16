@@ -11,7 +11,8 @@ public:
 	virtual bool init();
 
 	//Touch Began 
-	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event  *event);
+	 bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event  *event);
+	 void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event  *event);
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(PlayGame);
