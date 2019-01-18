@@ -27,6 +27,7 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src\Common</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -41,6 +42,7 @@
     <ClInclude Include="..\Classes\Define.h">
       <Filter>src\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Model.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
